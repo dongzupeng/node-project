@@ -1,0 +1,47 @@
+{
+  "kind": "singleType",
+  "collectionName": "user_infos",
+  "info": {
+    "singularName": "user-info",
+    "pluralName": "user-infos",
+    "displayName": "userInfo"
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "username": {
+      "type": "string"
+    },
+    "icon": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "email": {
+      "type": "email"
+    },
+    "area": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "boolean",
+      "default": true,
+      "required": true
+    },
+    "tags": {
+      "type": "text"
+    },
+    "skill": {
+      "type": "enumeration",
+      "enum": [
+        "Vue",
+        "React",
+        "TypeScript"
+      ]
+    }
+  }
+}

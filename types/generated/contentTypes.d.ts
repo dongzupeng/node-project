@@ -362,6 +362,41 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
+export interface ApiUserInfoUserInfo extends Schema.SingleType {
+  collectionName: 'user_infos';
+  info: {
+    singularName: 'user-info';
+    pluralName: 'user-infos';
+    displayName: 'userInfo';
+  };
+  options: {
+    draftAndPublish: false;
+  };
+  attributes: {
+    username: Attribute.String;
+    icon: Attribute.Media;
+    email: Attribute.Email;
+    area: Attribute.String;
+    gender: Attribute.Boolean & Attribute.Required & Attribute.DefaultTo<true>;
+    tags: Attribute.Text;
+    skill: Attribute.Enumeration<['Vue', 'React', 'TypeScript']>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::user-info.user-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::user-info.user-info',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -798,6 +833,7 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
+      'api::user-info.user-info': ApiUserInfoUserInfo;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
